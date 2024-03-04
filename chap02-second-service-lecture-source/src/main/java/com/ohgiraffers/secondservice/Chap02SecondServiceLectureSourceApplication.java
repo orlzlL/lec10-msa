@@ -9,5 +9,4 @@ public class Chap02SecondServiceLectureSourceApplication {
     public static void main(String[] args) {
         SpringApplication.run(Chap02SecondServiceLectureSourceApplication.class, args);
     }
-
 }
