@@ -28,3 +28,7 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+# yml 파일에 추가적인 변수 작성
+swcamp:
+  message: Let's do msa!
