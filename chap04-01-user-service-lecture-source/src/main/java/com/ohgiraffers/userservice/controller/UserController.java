@@ -32,7 +32,7 @@ public class UserController {
      *  2. @Value를 활용해 필드로 주입 받고 활용하는 방법
     **/
 
-    /* 설명. 1. Envirionment 활용해 설정값 불러오기(getProperty) */
+    /* 설명. 1. Environment 활용해 설정값 불러오기(getProperty) */
     @GetMapping("/health_check")
     public String status(){
         return "Server at " + env.getProperty("local.server.port")
