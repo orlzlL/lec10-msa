@@ -1,0 +1,14 @@
+server:
+  port: 8001
+# 메모. 8002번도 추가해서 여러 클라이언트 (scale-out)
+
+spring:
+  application:
+    name: user-service
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
