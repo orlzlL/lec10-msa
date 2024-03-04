@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class UserController {
 
-    private Environment env;
+    private Environment env;            // 메모. yml 파일을 자료형으로 받아서 호출 할 수 있음
     private HelloVO helloVO;
     private ModelMapper modelMapper;
 
     @Autowired
     public UserController(Environment env, HelloVO helloVO, ModelMapper modelMapper) {
+
         this.env = env;
         this.helloVO = helloVO;
         this.modelMapper = modelMapper;
@@ -47,6 +48,8 @@ public class UserController {
 
     /* 설명. 회원가입(POST - /users) */
     @PostMapping("/users")
+
+    // 메모. GET 방식은 데이터를 Header에 담아서 전송 / POST 방식은 데이터를 Body에 담아서 전송함
     public ResponseEntity<ResponseUser> registUser(@RequestBody RequestUser user){
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);  // 메모. 의존성 주입받은 ModelMapper를 통해서 user를 UserDTO로 변환
         System.out.println("userDTO = " + userDTO);
