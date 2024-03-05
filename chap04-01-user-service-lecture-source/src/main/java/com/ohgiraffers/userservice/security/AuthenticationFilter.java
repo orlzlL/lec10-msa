@@ -37,7 +37,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             throws AuthenticationException {
         try {
             RequestLogin requestLogin =
-                    new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);     // 메모. Stream으로 들어온 거 Byte단위로 끊어서 RequestLogin에 담음
+                    new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
+            // 메모. Stream으로 들어온 거 Byte단위로 끊어서 RequestLogin에 담음
 
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
