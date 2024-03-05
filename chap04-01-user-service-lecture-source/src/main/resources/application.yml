@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8777
 
 spring:
   application:
@@ -13,7 +13,7 @@ spring:
 # jpa config
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create    # 메모. 껐다 키는 순간에 자동으로 테이블 생성
     show-sql: true
     database: mysql
     properties:
@@ -32,3 +32,11 @@ eureka:
 # yml 파일에 추가적인 변수 작성
 swcamp:
   message: Let's do msa!
+
+token:
+
+  # JWT 토큰의 만료시간 설정(ms단위)(12시간으로 설정)
+  expiration_time: 43200000
+
+  # JWT 토큰의 Verify Signature를 위한 secret-key
+  secret: l1Z5I9WufSD5qM0UTHXDJa1kaGxBlyhKMbx+ONkqzeRTlKdF8Bq37mA3Z8nhjRlwVUrL/u3bdkFeamIrUoWvVw==

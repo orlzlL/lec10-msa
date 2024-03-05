@@ -1,9 +1,11 @@
 package com.ohgiraffers.userservice.controller;
 
 import com.ohgiraffers.userservice.dto.UserDTO;
+import com.ohgiraffers.userservice.service.UserService;
 import com.ohgiraffers.userservice.vo.HelloVO;
 import com.ohgiraffers.userservice.vo.RequestUser;
 import com.ohgiraffers.userservice.vo.ResponseUser;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -19,12 +21,18 @@ public class UserController {
     private HelloVO helloVO;
     private ModelMapper modelMapper;
 
+    private UserService userService;
+
     @Autowired
-    public UserController(Environment env, HelloVO helloVO, ModelMapper modelMapper) {
+    public UserController(Environment env,
+                          HelloVO helloVO,
+                          ModelMapper modelMapper,
+                          UserService userService) {
 
         this.env = env;
         this.helloVO = helloVO;
         this.modelMapper = modelMapper;
+        this.userService = userService;
     }
 
     /* 설명.
@@ -51,11 +59,16 @@ public class UserController {
 
     // 메모. GET 방식은 데이터를 Header에 담아서 전송 / POST 방식은 데이터를 Body에 담아서 전송함
     public ResponseEntity<ResponseUser> registUser(@RequestBody RequestUser user){
-        UserDTO userDTO = modelMapper.map(user, UserDTO.class);  // 메모. 의존성 주입받은 ModelMapper를 통해서 user를 UserDTO로 변환
-        System.out.println("userDTO = " + userDTO);
 
-        ResponseUser responseUser = new ResponseUser();
-        responseUser.setName("응답잘되네");
+        /* 설명. RequestUser -> UserDTO */
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);  // 메모. 의존성 주입받은 ModelMapper를 통해서 user를 UserDTO로 변환
+
+        /* 설명. 회원가입 비즈니스 로직 시작 */
+        userService.registUser(userDTO);        // 메모. UserDTO는 CallByReference
+
+        /* 설명. UserDTO -> ResponseUser */
+        ResponseUser responseUser = modelMapper.map(userDTO, ResponseUser.class);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 }
