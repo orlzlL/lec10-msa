@@ -66,4 +66,19 @@ public class UserServiceImpl implements UserService {
                 true, true, true, true,
         new ArrayList<>());
     }
+
+    /* 설명. 토큰의 재료인 userid(사용자 고유 번호) 조회를 위해 만들어진 메소드 */
+    @Override
+    public UserDTO getUserDetailsByEmail(String email) {
+
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if(userEntity == null)
+            throw new UsernameNotFoundException(email + " 아이디의 유저는 존재하지 않음");
+
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+
+        return userDTO;
+    }
 }

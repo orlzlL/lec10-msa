@@ -36,7 +36,7 @@ public class UserController {
     }
 
     /* 설명.
-     *  application.yml 파일로부터 설정 값을 불러오기 위해서는 두 가지 방법이 제공된다.
+     *  application.yml 파일로부터 설정    값을 불러오기 위해서는 두 가지 방법이 제공된다.
      *  1. Environment를 의존성 주입 받아 getProperty로 설정 키 값을 작성해 불러오는 방법
      *  2. @Value를 활용해 필드로 주입 받고 활용하는 방법
     **/
