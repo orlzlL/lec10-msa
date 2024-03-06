@@ -54,7 +54,6 @@ public class WebSecurity {
                 .authenticationManager(authenticationManager);
         http.addFilter(getAuthenticationFilter(authenticationManager));
         
-
         return http.build();
     }
 

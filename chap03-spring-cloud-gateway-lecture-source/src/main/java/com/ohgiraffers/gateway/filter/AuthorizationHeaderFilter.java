@@ -29,7 +29,6 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
     }
 
     public static class Config {
-
     }
 
     /* 설명. 토큰을 Authorization 키 값으로 가지고 오는지 판별, 그 토큰이 유효한지 판별 */
